@@ -1,0 +1,39 @@
+{
+    "tasks": [
+        {
+            "task": "tarea 1",
+            "state": "done",
+            "folder": "personal",
+            "id": "13juoi13",
+            "idUser": "34joiu42"
+        },
+        {
+            "task": "tarea 2",
+            "state": "done",
+            "folder": "hogar",
+            "id": "13juoi1342",
+            "idUser": "3234joiu42"
+        },
+        {
+            "task": "tarea 3",
+            "state": "done",
+            "folder": "hogar",
+            "id": "13juoi1342",
+            "idUser": "3234joiu42"
+        },
+        {
+            "task": "taera 4",
+            "state": "inProgress",
+            "folder": "hogar",
+            "id": "13juoi1342sert",
+            "idUser": "3234joiu42gdsfg"
+        },
+        {
+            "task": "taera 5",
+            "state": "inProgress",
+            "folder": "trabajo",
+            "id": "13juoi12sert",
+            "idUser": "3234iu42gdsfg"
+        }
+    ]
+}
