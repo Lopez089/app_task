@@ -1,4 +1,4 @@
-import { task } from '../index'
+import { task } from '..'
 
 export interface listTask {
     tasks: null | task[]
