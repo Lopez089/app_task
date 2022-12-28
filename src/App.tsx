@@ -1,12 +1,19 @@
-import { useState } from 'react'
+import { FormTask } from './components'
 import './App.css'
 
+import { formValue } from './interface'
+
+import { formNewTask } from "./data/formNewTask"
+const onChange: formValue = {
+  valueTask: null,
+  valueFolder: null
+}
+
+
 function App() {
-
-
   return (
     <div className="App">
-      hola
+      <FormTask data={formNewTask} handleSubmit={(e) => e.preventDefault()} state='idle' onChange={onChange} />
     </div>
   )
 }
