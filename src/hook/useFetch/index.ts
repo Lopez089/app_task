@@ -54,3 +54,5 @@ export const useFetch = (url: string) => {
 
     return stateFetch
 }
+
+export type { IStateFetch } 
