@@ -1,43 +1,22 @@
 import { createContext, useReducer } from 'react'
-import { listTask } from '../interface'
+import { taskState, taskAction } from '../interface'
+import { taskReducer } from './reducer'
 
-const initialState = {
+const initialState: taskState = {
     state: 'idle',
     tasks: null,
     error: null
 }
 
-interface action {
-    type: string,
-    payload: any
-
-}
-
-interface contextValue {
-    state: listTask
-    dispatch: action
-}
-
-export const Context = createContext<[state: listTask, dispatch: React.Dispatch<action>]>([initialState, () => { }])
-console.log("🚀 ~ file: store.tsx:22 ~ Context", Context)
-
+export const Context = createContext<[state: taskState, dispatch: React.Dispatch<taskAction>]>([initialState, () => { }])
 
 interface store {
     children: React.ReactNode;
 }
 
-
 export const Store = ({ children }: store) => {
 
-    const [state, dispatch] = useReducer((state: listTask, action): listTask => {
-        switch (action.type) {
-            case 'initialState':
-                return action.payload
-            default:
-                return state
-        }
-    }, initialState)
-
+    const [state, dispatch] = useReducer((state: taskState, action: taskAction) => taskReducer(state, action), initialState)
 
     return (
         <Context.Provider value={[state, dispatch]}>

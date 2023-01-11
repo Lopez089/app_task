@@ -1,26 +1,43 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { FormTask } from './components'
 import './App.css'
-import { formValue, task } from './interface'
+import { task, taskState } from './interface'
+import { actionType } from './interface/state/action'
 import { Context } from './store/store'
 import { useFetch } from './hook'
-
-
 import { formNewTask } from "./data/formNewTask"
-const onChange: formValue = {
-  valueTask: null,
-  valueFolder: null
+
+
+const stateFormValue: any = {
+  state: 'idle',
+  onChange: {
+    valueTask: 3123,
+    valueFolder: 1231
+  }
 }
 
 
-function App() {
-  const [state, dispatch] = useContext(Context)
-  console.log("🚀 ~ file: App.tsx:18 ~ App ~ dispatch", dispatch)
+function handleSubmit(e, setStateForm) {
+  e.preventDefault()
+  setStateForm((oldValue) => ({ ...oldValue, state: 'loading' }))
+  let valueTask = e.target.Task.value
+  let valueFolder = e.target.Folder.value
 
+  if (valueTask === '') { valueTask = null }
+  if (valueFolder === '') { valueFolder = null }
+
+  setStateForm(oldValue => ({ state: 'success', onChange: { valueTask: valueTask, valueFolder: valueFolder } }))
+
+
+}
+
+function App() {
+  const [stateForm, setStateForm] = useState(stateFormValue)
+  const [state, dispatch] = useContext(Context)
   const stateFetch = useFetch('http://localhost:3000/tasks/')
 
   useEffect(() => {
-    dispatch({ type: 'initialState', payload: stateFetch })
+    dispatch({ type: actionType.initialState, payload: stateFetch });
   }, [stateFetch])
 
   if (state.state === 'idle' || state.state === 'error') {
@@ -43,7 +60,7 @@ function App() {
         })}
       </ul>
       <div className="App">
-        <FormTask data={formNewTask} handleSubmit={(e) => e.preventDefault()} state='idle' onChange={onChange} />
+        <FormTask data={formNewTask} handleSubmit={(e) => handleSubmit(e, setStateForm)} state={stateForm.state} onChange={stateForm.onChange} />
       </div>
     </>
   )

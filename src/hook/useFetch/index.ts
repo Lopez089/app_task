@@ -1,14 +1,8 @@
 import { useEffect, useState } from 'react';
-import { task } from '../../interface'
-
-interface IStateFetch<T> {
-    state: 'idle' | 'loading' | 'error' | 'success',
-    data: null | T[]
-    error: null | Error
-}
+import { task, taskState } from '../../interface'
 
 export const useFetch = (url: string) => {
-    const [stateFetch, setStateFetch] = useState<IStateFetch<task[]>>({
+    const [stateFetch, setStateFetch] = useState<taskState<task[]>>({
         state: 'idle',
         data: null,
         error: null
@@ -54,5 +48,3 @@ export const useFetch = (url: string) => {
 
     return stateFetch
 }
-
-export type { IStateFetch } 
