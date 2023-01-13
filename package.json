@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "coverage": "vitest run --coverage",
-    "server": "json-server --watch server/db.json"
+    "server": "json-server --watch server/db.json",
+    "prepare": "husky install"
   },
   "dependencies": {
     "react": "18.2.0",
@@ -31,8 +32,10 @@
     "eslint-plugin-import": "2.25.2",
     "eslint-plugin-n": "15.0.0",
     "eslint-plugin-promise": "6.0.0",
-    "eslint-plugin-react": "^7.32.0",
+    "eslint-plugin-react": "7.32.0",
+    "husky": "8.0.3",
     "jsdom": "20.0.3",
+    "lint-staged": "13.1.0",
     "typescript": "4.9.4",
     "vite": "4.0.4",
     "vitest": "0.26.3",
