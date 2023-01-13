@@ -16,11 +16,12 @@ const stateFormValue: any = {
   }
 }
 
-function handleSubmit(e, setStateForm) {
+function handleSubmit (e, setStateForm) {
   e.preventDefault()
   setStateForm((oldValue) => ({ ...oldValue, state: 'loading' }))
   let valueTask = e.target.Task.value
   let valueFolder = e.target.Folder.value
+
   if (valueTask === '') { valueTask = null }
   if (valueFolder === '') { valueFolder = null }
 
