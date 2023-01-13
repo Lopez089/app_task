@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "coverage": "vitest run --coverage",
     "server": "json-server --watch server/db.json"
   },

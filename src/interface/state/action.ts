@@ -1,14 +1,14 @@
-import { task } from '..';
+import { task } from '..'
 import { IStateFetch } from '../../hook/useFetch/index'
 
 export enum actionType {
-    initialState,
-    addTask,
+  initialState,
+  addTask,
 }
 
 export interface initialState {
-    type: actionType.initialState;
-    payload: IStateFetch<task[]>
+  type: actionType.initialState
+  payload: IStateFetch<task[]>
 }
 
 export type taskAction = initialState

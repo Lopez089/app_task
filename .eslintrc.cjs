@@ -19,6 +19,8 @@ module.exports = {
     '@typescript-eslint',
     'react'
   ],
+  "ignorePatterns": ["vite.config.ts", "vite-env.d.ts", "test"],
   rules: {
+    "@typescript-eslint/space-before-blocks": "off"
   }
 }

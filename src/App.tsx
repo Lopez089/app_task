@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+
 import { FormTask } from './components'
 import './App.css'
 import { task, taskState } from './interface'
 import { actionType } from './interface/state/action'
 import { Context } from './store/store'
 import { useFetch } from './hook'
-import { formNewTask } from "./data/formNewTask"
-
+import { formNewTask } from './data/formNewTask'
 
 const stateFormValue: any = {
   state: 'idle',
@@ -16,8 +16,7 @@ const stateFormValue: any = {
   }
 }
 
-
-function handleSubmit(e, setStateForm) {
+function handleSubmit (e, setStateForm) {
   e.preventDefault()
   setStateForm((oldValue) => ({ ...oldValue, state: 'loading' }))
   let valueTask = e.target.Task.value
@@ -26,18 +25,16 @@ function handleSubmit(e, setStateForm) {
   if (valueTask === '') { valueTask = null }
   if (valueFolder === '') { valueFolder = null }
 
-  setStateForm(oldValue => ({ state: 'success', onChange: { valueTask: valueTask, valueFolder: valueFolder } }))
-
-
+  setStateForm(oldValue => ({ state: 'success', onChange: { valueTask, valueFolder } }))
 }
 
-function App() {
+const App = (): JSX.Element => {
   const [stateForm, setStateForm] = useState(stateFormValue)
   const [state, dispatch] = useContext(Context)
   const stateFetch = useFetch('http://localhost:3000/tasks/')
 
   useEffect(() => {
-    dispatch({ type: actionType.initialState, payload: stateFetch });
+    dispatch({ type: actionType.initialState, payload: stateFetch })
   }, [stateFetch])
 
   if (state.state === 'idle' || state.state === 'error') {
@@ -50,17 +47,23 @@ function App() {
   return (
     <>
       <ul>
-        {state.data.map((task: task) => {
-          return (
-            <li key={task.id}>
-              <h3>{task.task}</h3>
-              <h6>{task.folder}</h6>
-            </li>
-          )
-        })}
+        {
+          (state.data == null
+            ? <p>Agrege una nueva nota</p>
+            : state.data.map((task: task) => {
+              return (
+                <li key={task.id}>
+                  <h3>{task.task}</h3>
+                  <h6>{task.folder}</h6>
+                </li>
+              )
+            }))
+
+        }
+
       </ul>
       <div className="App">
-        <FormTask data={formNewTask} handleSubmit={(e) => handleSubmit(e, setStateForm)} state={stateForm.state} onChange={stateForm.onChange} />
+        <FormTask data={formNewTask} handleSubmit={(e) => { handleSubmit(e, setStateForm) }} state={stateForm.state} onChange={stateForm.onChange} />
       </div>
     </>
   )

@@ -1,50 +1,46 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import { task, taskState } from '../../interface'
 
-export const useFetch = (url: string) => {
-    const [stateFetch, setStateFetch] = useState<taskState<task[]>>({
-        state: 'idle',
-        data: null,
-        error: null
-    })
+export const useFetch = (url: string): taskState<task[]> => {
+  const [stateFetch, setStateFetch] = useState<taskState<task[]>>({
+    state: 'idle',
+    data: null,
+    error: null
+  })
 
-    useEffect(() => {
+  useEffect(() => {
+    const getData = async (): Promise<void> => {
+      try {
+        setStateFetch((oldValue) => ({ ...oldValue, state: 'loading' }))
+        const res = await fetch(url)
 
-        const getData = async () => {
-            try {
-                setStateFetch((oldValue) => ({ ...oldValue, state: 'loading' }))
-                const res = await fetch(url)
-
-                if (!res.ok) {
-                    setStateFetch({
-                        state: "error",
-                        data: null,
-                        error: Error()
-                    })
-                }
-
-                const data = await res.json()
-
-                setStateFetch({
-                    state: 'success',
-                    data: data,
-                    error: null
-                })
-            } catch (e) {
-                setStateFetch({
-                    state: 'error',
-                    data: null,
-                    error: Error()
-                })
-            }
-
+        if (!res.ok) {
+          setStateFetch({
+            state: 'error',
+            data: null,
+            error: Error()
+          })
         }
-        getData()
 
+        const data = await res.json()
 
+        setStateFetch({
+          state: 'success',
+          data,
+          error: null
+        })
+      } catch (e) {
+        setStateFetch({
+          state: 'error',
+          data: null,
+          error: Error()
+        })
+      }
+    }
+    getData()
+      .then().catch((e) => { console.error(e) }
+      )
+  }, [url])
 
-    }, [url])
-
-
-    return stateFetch
+  return stateFetch
 }

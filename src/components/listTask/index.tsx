@@ -1,19 +1,19 @@
-import { listTask, task } from '../../interface'
+import React from 'react'
+import { task, IListTasks } from '../../interface'
 import { wrapperTaskData } from '../../data/notes'
 
-export const ListTasks = (({ tasks, state }: listTask) => {
-    if (state === 'loading') { return <p>{wrapperTaskData.loadinData}</p> }
-    if (state === 'error' && !tasks) { return <p>{wrapperTaskData.messageError}</p> }
-    if (!tasks) { return <p>{wrapperTaskData.listEmpyTask}</p> }
+export const ListTasks = ({ data, state }: IListTasks): JSX.Element => {
+  if (state === 'loading') { return <p>{wrapperTaskData.loadinData}</p> }
+  if (state === 'error' && (data == null)) { return <p>{wrapperTaskData.messageError}</p> }
+  if (data == null) { return <p>{wrapperTaskData.listEmpyTask}</p> }
 
-    return (
-        <>
-            {
-                tasks.map((task: task) => {
-                    return (<h1 key={task.id}>{task.task}</h1>)
-                })
-            }
-        </>
-    )
-
-})
+  return (
+    <>
+      {
+        data.map((task: task) => {
+          return (<h1 key={task.id}>{task.task}</h1>)
+        })
+      }
+    </>
+  )
+}
