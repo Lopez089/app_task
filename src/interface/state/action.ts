@@ -1,5 +1,6 @@
 import { task } from '..'
 import { IStateFetch } from '../../hook/useFetch/index'
+import { INewTask } from '../components/listTasks/index'
 
 export enum actionType {
   initialState,
@@ -11,4 +12,9 @@ export interface initialState {
   payload: IStateFetch<task[]>
 }
 
-export type taskAction = initialState
+export interface addTask {
+  type: actionType.addTask
+  payload: INewTask
+}
+
+export type taskAction = initialState | addTask
