@@ -10,6 +10,23 @@ const App = (): JSX.Element => {
   const [state, dispatch] = useContext(Context)
   const stateFetch = useFetch('http://localhost:3000/tasks/')
 
+  const handleRemoveTask = (id: string): void => {
+    dispatch({ type: actionType.removeTask, payload: id })
+    const removeTask = async (): Promise<void> => {
+      fetch(`http://localhost:3000/tasks/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: null
+      })
+        .then(async res => await res.json())
+        .catch(e => { console.error(e) })
+    }
+    removeTask()
+      .then()
+      .catch(e => { console.error(e) })
+  }
   useEffect(() => {
     dispatch({ type: actionType.initialState, payload: stateFetch })
   }, [stateFetch])
@@ -32,6 +49,7 @@ const App = (): JSX.Element => {
                 <li key={task.id}>
                   <h3>{task.task}</h3>
                   <h6>{task.folder}</h6>
+                  <button onClick={() => { handleRemoveTask(task.id) }}>Eliminar</button>
                 </li>
               )
             }))

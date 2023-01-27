@@ -5,6 +5,7 @@ import { INewTask } from '../components/listTasks/index'
 export enum actionType {
   initialState,
   addTask,
+  removeTask
 }
 
 export interface initialState {
@@ -17,4 +18,9 @@ export interface addTask {
   payload: INewTask
 }
 
-export type taskAction = initialState | addTask
+export interface removeTask {
+  type: actionType.removeTask
+  payload: string
+}
+
+export type taskAction = initialState | addTask | removeTask
