@@ -1,0 +1,19 @@
+li {
+    list-style: none;
+}
+
+.card {
+    display: flex;
+    background-color: lightblue;
+    padding: .5rem;
+    min-width: 400px;
+    border-radius: .5rem;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+}
+
+.card>input[checked] {
+    margin-right: 1rem;
+}
