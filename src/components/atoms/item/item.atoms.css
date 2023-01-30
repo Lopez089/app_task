@@ -4,7 +4,6 @@ li {
 
 .card {
     display: flex;
-    background-color: lightblue;
     padding: .5rem;
     min-width: 400px;
     border-radius: .5rem;
@@ -14,6 +13,10 @@ li {
     -o-border-radius: .5rem;
 }
 
-.card>input[checked] {
+.card.cardComplete {
+    background-color: lightblue;
+}
+
+.card>input {
     margin-right: 1rem;
 }
