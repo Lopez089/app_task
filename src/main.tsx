@@ -6,8 +6,6 @@ import { Store } from './store/store'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Store>
-      <App />
-    </Store>
+    <App />
   </React.StrictMode>
 )

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
-import { Item, WrapperItems, Heading } from './components'
+import { Item, WrapperItems, Heading, SectionItems } from './components'
 import './App.css'
-// import { task } from './interface'
+import { task } from './interface'
 // import { actionType } from './interface/state/action'
 // import { Context } from './store/store'
 // import { useFetch } from './hook'
@@ -11,10 +11,10 @@ const task1 = {
   state: 'complete'
 }
 
-const listsTask1 = [
+const listsTask1: task[] = [
   {
     task: 'hacer la cama',
-    state: 'inProgress',
+    state: 'complete',
     folder: 'hogar',
     id: 'sdafasdfas',
     idUser: 'asdfasf'
@@ -27,8 +27,8 @@ const listsTask1 = [
     idUser: 'asdfsadfasasf'
   },
   {
-    task: 'nada',
-    state: 'complete',
+    task: 'nadar',
+    state: 'inProgress',
     folder: 'deporte',
     id: 'sdafasdfassdsdfasafas',
     idUser: 'asdfsadfaasdfassasf'
@@ -63,9 +63,11 @@ const App = (): JSX.Element => {
   return (
     // <WrapperItems items={listsTask1} />
     <>
-      <Heading as='h1'>Tareas Hogar</Heading>
-      <Heading as='h2'>Tareas Hogar</Heading>
-      <Heading as='h3'>Tareas Hogar</Heading>
+      <SectionItems >
+        <Heading as={'h2'}>Tareas</Heading>
+        <WrapperItems items={listsTask1} />
+      </SectionItems>
+
     </>
   )
   // if (state.state === 'idle' || state.state === 'error') {
@@ -81,7 +83,7 @@ const App = (): JSX.Element => {
   //     <ul>
   //       {
   //         (state.data == null
-  //           ? <p>Agrege una nueva nota</p>
+
   //           : state.data.map((task: task) => {
   //             return (
   //               <li key={task.id}>
