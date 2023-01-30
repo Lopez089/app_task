@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { Item, WrapperItems } from './components'
+import { Item, WrapperItems, Heading } from './components'
 import './App.css'
 // import { task } from './interface'
 // import { actionType } from './interface/state/action'
@@ -61,7 +61,12 @@ const App = (): JSX.Element => {
   // }, [stateFetch])
 
   return (
-    //<WrapperItems items={listsTask1} />
+    // <WrapperItems items={listsTask1} />
+    <>
+      <Heading as='h1'>Tareas Hogar</Heading>
+      <Heading as='h2'>Tareas Hogar</Heading>
+      <Heading as='h3'>Tareas Hogar</Heading>
+    </>
   )
   // if (state.state === 'idle' || state.state === 'error') {
   //   return <Item {...task1} />
