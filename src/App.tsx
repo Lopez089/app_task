@@ -1,10 +1,39 @@
 import React, { useContext, useEffect } from 'react'
-import { Item, WrapperForm } from './components'
+import { Item, WrapperItems } from './components'
 import './App.css'
-import { task } from './interface'
-import { actionType } from './interface/state/action'
-import { Context } from './store/store'
-import { useFetch } from './hook'
+// import { task } from './interface'
+// import { actionType } from './interface/state/action'
+// import { Context } from './store/store'
+// import { useFetch } from './hook'
+
+const task1 = {
+  task: 'hacer la cama',
+  state: 'complete'
+}
+
+const listsTask1 = [
+  {
+    task: 'hacer la cama',
+    state: 'inProgress',
+    folder: 'hogar',
+    id: 'sdafasdfas',
+    idUser: 'asdfasf'
+  },
+  {
+    task: 'hacer de comer',
+    state: 'complete',
+    folder: 'hogar',
+    id: 'sdafasdfassdafas',
+    idUser: 'asdfsadfasasf'
+  },
+  {
+    task: 'nada',
+    state: 'complete',
+    folder: 'deporte',
+    id: 'sdafasdfassdsdfasafas',
+    idUser: 'asdfsadfaasdfassasf'
+  }
+]
 
 const App = (): JSX.Element => {
   // const [state, dispatch] = useContext(Context)
@@ -31,13 +60,8 @@ const App = (): JSX.Element => {
   //   dispatch({ type: actionType.initialState, payload: stateFetch })
   // }, [stateFetch])
 
-  const task1 = {
-    task: 'hacer la cama',
-    state: 'complete'
-  }
-
   return (
-    <Item {...task1} />
+    //<WrapperItems items={listsTask1} />
   )
   // if (state.state === 'idle' || state.state === 'error') {
   //   return <Item {...task1} />
