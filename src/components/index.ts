@@ -1,3 +1,4 @@
+export * from './atoms/heading/heading.atoms'
 export * from './atoms/item/item.atoms'
 export * from './formTask/formTask'
 export * from './listTask'
